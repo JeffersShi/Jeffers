@@ -15,12 +15,21 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { DialogComponent } from './dialog/dialog.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -33,9 +42,19 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatCardModule,
     MatDividerModule,
     MatRadioModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule,
+    MatIconModule,
+    MatListModule,
+    MatSnackBarModule,
+    MatDatepickerModule,
+    MatMomentDateModule
   ],
-  providers: [],
+  providers: [
+    {provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: {useUtc: true, strict: true}}
+  ],
+  entryComponents: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

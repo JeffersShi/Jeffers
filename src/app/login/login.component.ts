@@ -1,29 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 
-// 导入路由提供的服务
 import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  // template: `
-  //   <input type="text" [(ngModel)]="account" >
-  // `,
   styleUrls: ['./login.component.less']
 })
 export class LoginComponent implements OnInit {
+  userName = ''
+  nowUserName = ''
+  users: any = []
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) { };
 
   ngOnInit(): void {
-  }
-
-
-  account = ''
-  password = ''
-  login = () => {
-    if (this.account !== '' && this.password !== '') {
-      this.router.navigate(['/home/' + this.account])
+    let str: any = localStorage.getItem('users')
+    if (str) {
+      this.users = JSON.parse(str)
+      this.nowUserName = this.users[0]
     }
+  };
+  
+  addUserName () {
+    if (this.userName.trim() === '') return
+    this.users.push(this.userName)
+    localStorage.setItem('users', JSON.stringify(this.users))
+    this.nowUserName = this.userName
+    this.userName = ''
+  };
+
+  Jump () {
+    this.router.navigate(['/home/' + this.nowUserName])
   }
 }

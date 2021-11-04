@@ -1,13 +1,22 @@
 <div class="box">
-    <h1>Welcome, please login first</h1>
-    <mat-form-field appearance="fill" class="input">
-        <mat-label>account</mat-label>
-        <input matInput placeholder="Please enter the account number" required [(ngModel)]="account">
-    </mat-form-field>
-    <mat-form-field appearance="fill" class="input">
-        <mat-label>password</mat-label>
-        <input matInput placeholder="Please input a password" required [(ngModel)]="password">
+    <h1 *ngIf="users.length">Welcome, {{ nowUserName }}</h1>
+    <h1 *ngIf="!users.length">Welcome, enter one user name</h1>
+    <mat-form-field class="adapt" appearance="fill">
+        <mat-label>userName</mat-label>
+        <input matInput placeholder="Please enter the account number" [(ngModel)]="userName">
     </mat-form-field>
     <br>
-    <button mat-raised-button color="primary" (click)="login()">Sign in</button>
+    <button class="add" mat-raised-button color="primary" (click)="addUserName()">addUserName</button>
+    <br>
+    <mat-form-field class="adapt" appearance="fill" *ngIf="users.length > 1">
+      <mat-label>Please select your user name</mat-label>
+      <mat-select [(value)]="nowUserName">
+        <mat-option *ngFor="let item of users" [value]="item">
+          {{ item }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div>
+      <button mat-raised-button [disabled]="nowUserName === ''" (click)="Jump()">GO!</button>
+    </div>
 </div>
