@@ -1,0 +1,30 @@
+<mat-card class="card">
+    <mat-card-title>hello, {{ account }}</mat-card-title>
+    <br>
+    <mat-card-subtitle>We need you to enter the JIRA item ID</mat-card-subtitle>
+    <mat-card-content>
+        <form class="example-form">
+            <mat-form-field class="example-full-width">
+            <mat-label>JIRA item ID</mat-label>
+            <input matInput placeholder="Please enter JIRA item ID" name="JIRAID" [(ngModel)]="JIRAID">
+            </mat-form-field>
+        </form>
+        <label id="example-radio-group-label">Please select a code reviewer</label>
+        <mat-radio-group
+        aria-labelledby="example-radio-group-label"
+        class="example-radio-group"
+        [(ngModel)]="reviewer"
+        >
+            <mat-radio-button class="example-radio-button" *ngFor="let name of reviewers" [value]="name">{{ name }}</mat-radio-button>
+        </mat-radio-group>
+        <br>
+        <button mat-stroked-button (click)="random()">random</button>
+        <br>
+        <br>
+        <div>The reviewer you selected is: {{ reviewer }}</div>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions class="action">
+        <button mat-raised-button color="primary" [disabled]="reviewer === '' || JIRAID === ''" (click)="determine()">determine</button>
+    </mat-card-actions>
+</mat-card>

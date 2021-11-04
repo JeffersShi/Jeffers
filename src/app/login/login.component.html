@@ -1,0 +1,13 @@
+<div class="box">
+    <h1>Welcome, please login first</h1>
+    <mat-form-field appearance="fill" class="input">
+        <mat-label>account</mat-label>
+        <input matInput placeholder="Please enter the account number" required [(ngModel)]="account">
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="input">
+        <mat-label>password</mat-label>
+        <input matInput placeholder="Please input a password" required [(ngModel)]="password">
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary" (click)="login()">Sign in</button>
+</div>
